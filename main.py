@@ -6,6 +6,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "http://http://127.0.0.1:3000",
     "https://nextjs-frontend.herokuapp.com"
 ]
 
@@ -13,8 +14,10 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["POST", "GET"],
     allow_headers=["*"],
+    max_age=3600,
+
 )
 @app.get('/image')
 def get_image():
